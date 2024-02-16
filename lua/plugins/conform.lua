@@ -10,6 +10,7 @@ return {
 				-- Use a sub-list to run only the first available formatter
 				javascript = { { "prettierd", "prettier" } },
 				html = { { "prettierd", "prettier" } },
+				htmldjango = { { "prettierd", "prettier" } },
 				css = { { "prettierd", "prettier" } },
 			},
 		})
