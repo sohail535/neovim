@@ -11,7 +11,7 @@ return {
 		lazy = false,
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pyright", "tsserver" },
+				ensure_installed = { "lua_ls", "pyright", "tsserver", "elixirls" },
 			})
 		end,
 	},
@@ -21,6 +21,10 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.elixirls.setup({
+                cmd = { 'elixir-ls' },
 				capabilities = capabilities,
 			})
 			lspconfig.pyright.setup({
