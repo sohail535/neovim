@@ -26,11 +26,8 @@ return {
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.jdtls.setup({
-				capabilities = capabilities,
-			})
 			lspconfig.elixirls.setup({
-				cmd = { "elixir-ls" },
+                cmd = { 'elixir-ls' },
 				capabilities = capabilities,
 			})
 			lspconfig.pyright.setup({
