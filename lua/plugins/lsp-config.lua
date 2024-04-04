@@ -27,7 +27,7 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.elixirls.setup({
-                cmd = { 'elixir-ls' },
+				cmd = { "elixir-ls" },
 				capabilities = capabilities,
 			})
 			lspconfig.pyright.setup({
