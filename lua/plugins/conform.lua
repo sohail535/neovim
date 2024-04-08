@@ -13,7 +13,8 @@ return {
 				htmldjango = { { "prettierd", "prettier" } },
 				css = { { "prettierd", "prettier" } },
 				json = { { "prettierd", "prettier" } },
-                elixir = { "mix" }
+				elixir = { "mix" },
+				java = { "google-java-format" },
 			},
 		})
 
