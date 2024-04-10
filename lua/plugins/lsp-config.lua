@@ -10,47 +10,42 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
 		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pyright", "tsserver", "elixirls" },
+			local mason_lspconfig = require("mason-lspconfig")
+			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+			mason_lspconfig.setup({
+				ensure_installed = {
+					"gopls",
+					"lua_ls",
+					"elixirls",
+					"pyright",
+					"tsserver",
+					"tsserver",
+					"tailwindcss",
+					"html",
+					"cssls",
+					"emmet_ls",
+					"gradle_ls",
+				},
+			})
+			mason_lspconfig.setup_handlers({
+				function(server_name)
+					if server_name ~= "jdtls" and server_name ~= "elixirls" then
+						require("lspconfig")[server_name].setup({
+							capabilities = lsp_capabilities,
+						})
+					end
+					if server_name == "elixirls" then
+						require("lspconfig")["elixir-ls"].setup({
+							capabilities = lsp_capabilities,
+						})
+					end
+				end,
 			})
 		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			lspconfig.jdtls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.elixirls.setup({
-				cmd = { "elixir-ls" },
-				capabilities = capabilities,
-			})
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.tsserver.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.tailwindcss.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.html.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.cssls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.emmet_ls.setup({
-				capabilities = capabilities,
-			})
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
